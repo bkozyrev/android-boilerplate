@@ -21,7 +21,7 @@ public interface RxSchedulersTransformer {
      * @param <T> тип внутри Observable
      * @return {@link ObservableTransformer}
      */
-    <T> ObservableTransformer getIOToMainTransformer();
+    <T> ObservableTransformer getIOToMainTransformerObservable();
 
     /**
      * Трансформер для Single, переключает c IO на main

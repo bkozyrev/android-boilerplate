@@ -24,7 +24,7 @@ public class RxSchedulersTransformerImpl implements RxSchedulersTransformer {
      */
     @SuppressWarnings("unchecked")
     @Override
-    public <T> ObservableTransformer<T, T> getIOToMainTransformer() {
+    public <T> ObservableTransformer<T, T> getIOToMainTransformerObservable() {
         return (ObservableTransformer) observable -> observable.subscribeOn(mRxSchedulers.getIOScheduler())
                 .observeOn(mRxSchedulers.getMainThreadScheduler());
     }
