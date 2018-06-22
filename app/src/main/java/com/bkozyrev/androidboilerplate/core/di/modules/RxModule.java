@@ -1,9 +1,9 @@
 package com.bkozyrev.androidboilerplate.core.di.modules;
 
+import com.bkozyrev.androidboilerplate.core.rx.IRxSchedulers;
+import com.bkozyrev.androidboilerplate.core.rx.IRxSchedulersTransformer;
 import com.bkozyrev.androidboilerplate.core.rx.RxSchedulers;
-import com.bkozyrev.androidboilerplate.core.rx.RxSchedulersImpl;
 import com.bkozyrev.androidboilerplate.core.rx.RxSchedulersTransformer;
-import com.bkozyrev.androidboilerplate.core.rx.RxSchedulersTransformerImpl;
 
 import javax.inject.Singleton;
 
@@ -20,13 +20,13 @@ public class RxModule {
 
     @Singleton
     @Provides
-    public RxSchedulers provideRxSchedulers() {
-        return new RxSchedulersImpl();
+    public IRxSchedulers provideRxSchedulers() {
+        return new RxSchedulers();
     }
 
     @Singleton
     @Provides
-    public RxSchedulersTransformer provideRxSchedulersTransformer(RxSchedulers rxSchedulers) {
-        return new RxSchedulersTransformerImpl(rxSchedulers);
+    public IRxSchedulersTransformer provideRxSchedulersTransformer(IRxSchedulers rxSchedulers) {
+        return new RxSchedulersTransformer(rxSchedulers);
     }
 }

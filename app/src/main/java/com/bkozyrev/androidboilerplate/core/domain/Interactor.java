@@ -1,6 +1,6 @@
 package com.bkozyrev.androidboilerplate.core.domain;
 
-import com.bkozyrev.androidboilerplate.core.rx.RxSchedulersTransformerImpl;
+import com.bkozyrev.androidboilerplate.core.rx.RxSchedulersTransformer;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
@@ -19,9 +19,9 @@ import io.reactivex.Single;
 public class Interactor<T> {
 
     // трансформер для переключения потоков выполнения
-    private RxSchedulersTransformerImpl rxSchedulersTransformer;
+    private RxSchedulersTransformer rxSchedulersTransformer;
 
-    public Interactor(RxSchedulersTransformerImpl rxSchedulersTransformer) {
+    public Interactor(RxSchedulersTransformer rxSchedulersTransformer) {
         this.rxSchedulersTransformer = rxSchedulersTransformer;
     }
 

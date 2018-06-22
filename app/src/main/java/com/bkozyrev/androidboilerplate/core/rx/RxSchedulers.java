@@ -3,27 +3,31 @@ package com.bkozyrev.androidboilerplate.core.rx;
 import android.support.annotation.NonNull;
 
 import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
- * {@code Interface} для получения {@link Scheduler}, чтобы управлять исполнением
+ * Реализация {@link IRxSchedulers}
  *
  * @author Козырев Борис
  */
-public interface RxSchedulers {
+public class RxSchedulers implements IRxSchedulers {
 
     /**
-     * Возвращает {@link Scheduler}, привязанный к главному потоку для передачи результата работы
-     *
-     * @return {@link Scheduler}
+     * {@inheritDoc}
      */
+    @Override
     @NonNull
-    Scheduler getMainThreadScheduler();
+    public Scheduler getMainThreadScheduler() {
+        return AndroidSchedulers.mainThread();
+    }
 
     /**
-     * Возвращает {@link Scheduler} для работы с сетью и файлами (Io)
-     *
-     * @return {@link Scheduler}
+     * {@inheritDoc}
      */
+    @Override
     @NonNull
-    Scheduler getIOScheduler();
+    public Scheduler getIOScheduler() {
+        return Schedulers.io();
+    }
 }

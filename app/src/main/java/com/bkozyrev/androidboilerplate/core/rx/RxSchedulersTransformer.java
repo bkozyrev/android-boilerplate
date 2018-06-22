@@ -7,50 +7,63 @@ import io.reactivex.ObservableTransformer;
 import io.reactivex.SingleTransformer;
 
 /**
- * {@code Interface} для получения трансофрмеров для шедулинга потоков выполнения.
- * Использовать при помощи {@code .compose}
+ * Реализация {@link IRxSchedulersTransformer}
  *
  * @author Козырев Борис
  */
+public class RxSchedulersTransformer implements IRxSchedulersTransformer {
 
-public interface RxSchedulersTransformer {
+    private IRxSchedulers mRxSchedulers;
 
-    /**
-     * Трансформер для Observable, переключает IO на main
-     *
-     * @param <T> тип внутри Observable
-     * @return {@link ObservableTransformer}
-     */
-    <T> ObservableTransformer getIOToMainTransformerObservable();
+    public RxSchedulersTransformer(IRxSchedulers rxSchedulers) {
+        mRxSchedulers = rxSchedulers;
+    }
 
     /**
-     * Трансформер для Single, переключает c IO на main
-     *
-     * @param <T> тип внутри Single
-     * @return {@link SingleTransformer}
+     * {@inheritDoc}
      */
-    <T> SingleTransformer<T, T> getIOToMainTransformerSingle();
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> ObservableTransformer<T, T> getIOToMainTransformerObservable() {
+        return (ObservableTransformer) observable -> observable.subscribeOn(mRxSchedulers.getIOScheduler())
+                .observeOn(mRxSchedulers.getMainThreadScheduler());
+    }
 
     /**
-     * Трансформер для Maybe, переключает c IO на main
-     *
-     * @param <T> тип внутри Maybe
-     * @return {@link MaybeTransformer}
+     * {@inheritDoc}
      */
-    <T> MaybeTransformer<T, T> getIOToMainTransformerMaybe();
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> SingleTransformer<T, T> getIOToMainTransformerSingle() {
+        return (SingleTransformer) single -> single.subscribeOn(mRxSchedulers.getIOScheduler())
+                .observeOn(mRxSchedulers.getMainThreadScheduler());
+    }
 
     /**
-     * Трансформер для Completable, переключает c IO на main
-     *
-     * @return {@link CompletableTransformer}
+     * {@inheritDoc}
      */
-    CompletableTransformer getIOToMainTransformerCompletable();
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> MaybeTransformer<T, T> getIOToMainTransformerMaybe() {
+        return (MaybeTransformer) maybe -> maybe.subscribeOn(mRxSchedulers.getIOScheduler())
+                .observeOn(mRxSchedulers.getMainThreadScheduler());
+    }
 
     /**
-     * Трансформер для Flowable, переключает c IO на main
-     *
-     * @param <T> тип внутри Flowable
-     * @return {@link FlowableTransformer}
+     * {@inheritDoc}
      */
-    <T> FlowableTransformer<T, T> getIOToMainTransformerFlowable();
+    @Override
+    public CompletableTransformer getIOToMainTransformerCompletable() {
+        return completable -> completable.subscribeOn(mRxSchedulers.getIOScheduler())
+                .observeOn(mRxSchedulers.getMainThreadScheduler());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public <T> FlowableTransformer<T, T> getIOToMainTransformerFlowable() {
+        return flowable -> flowable.subscribeOn(mRxSchedulers.getIOScheduler())
+                .observeOn(mRxSchedulers.getMainThreadScheduler());
+    }
 }
