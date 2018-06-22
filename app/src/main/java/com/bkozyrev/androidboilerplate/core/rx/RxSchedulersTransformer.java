@@ -1,5 +1,7 @@
 package com.bkozyrev.androidboilerplate.core.rx;
 
+import android.support.annotation.NonNull;
+
 import io.reactivex.CompletableTransformer;
 import io.reactivex.FlowableTransformer;
 import io.reactivex.MaybeTransformer;
@@ -15,7 +17,7 @@ public class RxSchedulersTransformer implements IRxSchedulersTransformer {
 
     private IRxSchedulers mRxSchedulers;
 
-    public RxSchedulersTransformer(IRxSchedulers rxSchedulers) {
+    public RxSchedulersTransformer(@NonNull IRxSchedulers rxSchedulers) {
         mRxSchedulers = rxSchedulers;
     }
 
@@ -24,6 +26,7 @@ public class RxSchedulersTransformer implements IRxSchedulersTransformer {
      */
     @SuppressWarnings("unchecked")
     @Override
+    @NonNull
     public <T> ObservableTransformer<T, T> getIOToMainTransformerObservable() {
         return (ObservableTransformer) observable -> observable.subscribeOn(mRxSchedulers.getIOScheduler())
                 .observeOn(mRxSchedulers.getMainThreadScheduler());
@@ -34,6 +37,7 @@ public class RxSchedulersTransformer implements IRxSchedulersTransformer {
      */
     @SuppressWarnings("unchecked")
     @Override
+    @NonNull
     public <T> SingleTransformer<T, T> getIOToMainTransformerSingle() {
         return (SingleTransformer) single -> single.subscribeOn(mRxSchedulers.getIOScheduler())
                 .observeOn(mRxSchedulers.getMainThreadScheduler());
@@ -44,6 +48,7 @@ public class RxSchedulersTransformer implements IRxSchedulersTransformer {
      */
     @SuppressWarnings("unchecked")
     @Override
+    @NonNull
     public <T> MaybeTransformer<T, T> getIOToMainTransformerMaybe() {
         return (MaybeTransformer) maybe -> maybe.subscribeOn(mRxSchedulers.getIOScheduler())
                 .observeOn(mRxSchedulers.getMainThreadScheduler());
@@ -53,6 +58,7 @@ public class RxSchedulersTransformer implements IRxSchedulersTransformer {
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public CompletableTransformer getIOToMainTransformerCompletable() {
         return completable -> completable.subscribeOn(mRxSchedulers.getIOScheduler())
                 .observeOn(mRxSchedulers.getMainThreadScheduler());
@@ -62,6 +68,7 @@ public class RxSchedulersTransformer implements IRxSchedulersTransformer {
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public <T> FlowableTransformer<T, T> getIOToMainTransformerFlowable() {
         return flowable -> flowable.subscribeOn(mRxSchedulers.getIOScheduler())
                 .observeOn(mRxSchedulers.getMainThreadScheduler());

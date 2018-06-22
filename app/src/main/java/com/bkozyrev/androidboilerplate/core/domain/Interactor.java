@@ -1,5 +1,7 @@
 package com.bkozyrev.androidboilerplate.core.domain;
 
+import android.support.annotation.NonNull;
+
 import com.bkozyrev.androidboilerplate.core.rx.RxSchedulersTransformer;
 
 import io.reactivex.Completable;
@@ -21,7 +23,7 @@ public class Interactor<T> {
     // трансформер для переключения потоков выполнения
     private RxSchedulersTransformer rxSchedulersTransformer;
 
-    public Interactor(RxSchedulersTransformer rxSchedulersTransformer) {
+    public Interactor(@NonNull RxSchedulersTransformer rxSchedulersTransformer) {
         this.rxSchedulersTransformer = rxSchedulersTransformer;
     }
 
@@ -31,7 +33,7 @@ public class Interactor<T> {
      * @param observable {@link Observable}
      * @return           {@link Observable}, выполняющийся из io в main потоках
      */
-    protected Observable<T> applySchedulers(Observable<T> observable) {
+    protected Observable<T> applySchedulers(@NonNull Observable<T> observable) {
         return observable.compose(rxSchedulersTransformer.getIOToMainTransformerObservable());
     }
 
@@ -41,7 +43,7 @@ public class Interactor<T> {
      * @param flowable {@link Flowable}
      * @return         {@link Flowable}, выполняющийся из io в main потоках
      */
-    protected Flowable<T> applySchedulers(Flowable<T> flowable) {
+    protected Flowable<T> applySchedulers(@NonNull Flowable<T> flowable) {
         return flowable.compose(rxSchedulersTransformer.getIOToMainTransformerFlowable());
     }
 
@@ -51,7 +53,7 @@ public class Interactor<T> {
      * @param single {@link Single}
      * @return       {@link Single}, выполняющийся из io в main потоках
      */
-    protected Single<T> applySchedulers(Single<T> single) {
+    protected Single<T> applySchedulers(@NonNull Single<T> single) {
         return single.compose(rxSchedulersTransformer.getIOToMainTransformerSingle());
     }
 
@@ -61,7 +63,7 @@ public class Interactor<T> {
      * @param maybe {@link Maybe}
      * @return      {@link Maybe}, выполняющийся из io в main потоках
      */
-    protected Maybe<T> applySchedulers(Maybe<T> maybe) {
+    protected Maybe<T> applySchedulers(@NonNull Maybe<T> maybe) {
         return maybe.compose(rxSchedulersTransformer.getIOToMainTransformerMaybe());
     }
 
@@ -71,7 +73,7 @@ public class Interactor<T> {
      * @param completable {@link Completable}
      * @return            {@link Completable}, выполняющийся из io в main потоках
      */
-    protected Completable applySchedulers(Completable completable) {
+    protected Completable applySchedulers(@NonNull Completable completable) {
         return completable.compose(rxSchedulersTransformer.getIOToMainTransformerCompletable());
     }
 }

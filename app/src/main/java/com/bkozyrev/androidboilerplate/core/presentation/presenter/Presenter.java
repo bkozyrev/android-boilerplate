@@ -1,5 +1,7 @@
 package com.bkozyrev.androidboilerplate.core.presentation.presenter;
 
+import android.support.annotation.NonNull;
+
 import com.bkozyrev.androidboilerplate.core.presentation.view.MvpView;
 
 /**
@@ -14,7 +16,7 @@ public interface Presenter<V extends MvpView> {
      *
      * @param mvpView Сущность {@link MvpView}
      */
-    void attachView(V mvpView);
+    void attachView(@NonNull V mvpView);
 
     /**
      * Отсоединение View от Presenter

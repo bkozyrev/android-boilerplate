@@ -1,5 +1,7 @@
 package com.bkozyrev.androidboilerplate.core.rx;
 
+import android.support.annotation.NonNull;
+
 import io.reactivex.CompletableTransformer;
 import io.reactivex.FlowableTransformer;
 import io.reactivex.MaybeTransformer;
@@ -21,6 +23,7 @@ public interface IRxSchedulersTransformer {
      * @param <T> тип внутри Observable
      * @return {@link ObservableTransformer}
      */
+    @NonNull
     <T> ObservableTransformer getIOToMainTransformerObservable();
 
     /**
@@ -29,6 +32,7 @@ public interface IRxSchedulersTransformer {
      * @param <T> тип внутри Single
      * @return {@link SingleTransformer}
      */
+    @NonNull
     <T> SingleTransformer<T, T> getIOToMainTransformerSingle();
 
     /**
@@ -37,6 +41,7 @@ public interface IRxSchedulersTransformer {
      * @param <T> тип внутри Maybe
      * @return {@link MaybeTransformer}
      */
+    @NonNull
     <T> MaybeTransformer<T, T> getIOToMainTransformerMaybe();
 
     /**
@@ -44,6 +49,7 @@ public interface IRxSchedulersTransformer {
      *
      * @return {@link CompletableTransformer}
      */
+    @NonNull
     CompletableTransformer getIOToMainTransformerCompletable();
 
     /**
@@ -52,5 +58,6 @@ public interface IRxSchedulersTransformer {
      * @param <T> тип внутри Flowable
      * @return {@link FlowableTransformer}
      */
+    @NonNull
     <T> FlowableTransformer<T, T> getIOToMainTransformerFlowable();
 }

@@ -1,5 +1,7 @@
 package com.bkozyrev.androidboilerplate.main.presentation.presenter;
 
+import android.support.annotation.NonNull;
+
 import com.bkozyrev.androidboilerplate.core.presentation.presenter.BasePresenter;
 import com.bkozyrev.androidboilerplate.main.interactor.MainInteractor;
 import com.bkozyrev.androidboilerplate.main.presentation.view.MainMvpView;
@@ -13,7 +15,7 @@ public class MainPresenter extends BasePresenter<MainMvpView> {
 
     private MainInteractor mainInteractor;
 
-    public MainPresenter(MainInteractor mainInteractor) {
+    public MainPresenter(@NonNull MainInteractor mainInteractor) {
         this.mainInteractor = mainInteractor;
     }
 }

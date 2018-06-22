@@ -23,7 +23,7 @@ public class BasePresenter<V extends MvpView> implements Presenter<V> {
      * {@inheritDoc}
      */
     @Override
-    public void attachView(V mvpView) {
+    public void attachView(@NonNull V mvpView) {
         this.mvpView = mvpView;
 
         if (isFirstLaunch) {
