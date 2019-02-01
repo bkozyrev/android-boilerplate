@@ -11,41 +11,41 @@ import com.bkozyrev.androidboilerplate.core.presentation.view.MvpView;
  *
  * @author Козырев Борис
  */
-public class BasePresenter<V extends MvpView> implements Presenter<V> {
+public class BasePresenter<V extends MvpView> {
 
     // флаг, определяющий первое присоединение View к Presenter
-    private boolean isFirstLaunch = true;
+    private boolean mIsFirstLaunch = true;
 
     // ссылка на View
-    private V mvpView;
+    private V mView;
 
     /**
-     * {@inheritDoc}
+     * Присоединение View к Presenter
+     *
+     * @param view Сущность {@link MvpView}
      */
-    @Override
-    public void attachView(@NonNull V mvpView) {
-        this.mvpView = mvpView;
+    public void attachView(@NonNull V view) {
+        this.mView = view;
 
-        if (isFirstLaunch) {
-            isFirstLaunch = false;
+        if (mIsFirstLaunch) {
+            mIsFirstLaunch = false;
             onFirstViewAttach();
         }
     }
 
     /**
-     * {@inheritDoc}
+     * Отсоединение View от Presenter
      */
-    @Override
     public void detachView() {
-        this.mvpView = null;
+        this.mView = null;
     }
 
     /**
      * Получение ссылки на {@link MvpView}
      */
     @NonNull
-    protected V getMvpView() {
-        return mvpView;
+    protected V getView() {
+        return mView;
     }
 
     /**

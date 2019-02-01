@@ -13,9 +13,9 @@ import com.bkozyrev.androidboilerplate.main.presentation.view.MainMvpView;
  */
 public class MainPresenter extends BasePresenter<MainMvpView> {
 
-    private MainInteractor mainInteractor;
+    private MainInteractor mMainInteractor;
 
     public MainPresenter(@NonNull MainInteractor mainInteractor) {
-        this.mainInteractor = mainInteractor;
+        mMainInteractor = mainInteractor;
     }
 }

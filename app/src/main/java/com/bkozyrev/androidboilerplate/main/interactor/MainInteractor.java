@@ -3,7 +3,7 @@ package com.bkozyrev.androidboilerplate.main.interactor;
 import android.support.annotation.NonNull;
 
 import com.bkozyrev.androidboilerplate.core.domain.Interactor;
-import com.bkozyrev.androidboilerplate.core.rx.RxSchedulersTransformer;
+import com.bkozyrev.androidboilerplate.core.rx.IRxSchedulersTransformer;
 import com.bkozyrev.androidboilerplate.main.data.IMainRepository;
 
 /**
@@ -14,10 +14,10 @@ import com.bkozyrev.androidboilerplate.main.data.IMainRepository;
 public class MainInteractor extends Interactor {
 
     // репозиторий данных
-    private IMainRepository mainRepository;
+    private IMainRepository mMainRepository;
 
-    public MainInteractor(@NonNull RxSchedulersTransformer rxSchedulersTransformer, @NonNull IMainRepository mainRepository) {
+    public MainInteractor(@NonNull IRxSchedulersTransformer rxSchedulersTransformer, @NonNull IMainRepository mainRepository) {
         super(rxSchedulersTransformer);
-        this.mainRepository = mainRepository;
+        mMainRepository = mainRepository;
     }
 }

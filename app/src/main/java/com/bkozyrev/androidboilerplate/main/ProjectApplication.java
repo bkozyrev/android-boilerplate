@@ -20,7 +20,7 @@ public class ProjectApplication extends Application implements HasActivityInject
 
     // инжектор для поставки зависимостей в андроид компоненты
     @Inject
-    DispatchingAndroidInjector<Activity> dispatchingActivityInjector;
+    DispatchingAndroidInjector<Activity> mDispatchingActivityInjector;
 
     /**
      * {@inheritDoc}
@@ -36,6 +36,6 @@ public class ProjectApplication extends Application implements HasActivityInject
      */
     @Override
     public AndroidInjector<Activity> activityInjector() {
-        return dispatchingActivityInjector;
+        return mDispatchingActivityInjector;
     }
 }

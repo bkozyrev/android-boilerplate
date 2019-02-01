@@ -1,7 +1,6 @@
 package com.bkozyrev.androidboilerplate.main.presentation.view;
 
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.bkozyrev.androidboilerplate.R;

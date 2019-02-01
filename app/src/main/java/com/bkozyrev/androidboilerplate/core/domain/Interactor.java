@@ -2,7 +2,7 @@ package com.bkozyrev.androidboilerplate.core.domain;
 
 import android.support.annotation.NonNull;
 
-import com.bkozyrev.androidboilerplate.core.rx.RxSchedulersTransformer;
+import com.bkozyrev.androidboilerplate.core.rx.IRxSchedulersTransformer;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
@@ -14,17 +14,15 @@ import io.reactivex.Single;
 /**
  * Базовый класс сущности Interactor для слоя domain паттерна clean architecture
  *
- * @param <T> модель данных, с которой работает Interactor
- *
  * @author Козырев Борис
  */
-public class Interactor<T> {
+public class Interactor {
 
     // трансформер для переключения потоков выполнения
-    private RxSchedulersTransformer rxSchedulersTransformer;
+    private IRxSchedulersTransformer mRxSchedulersTransformer;
 
-    public Interactor(@NonNull RxSchedulersTransformer rxSchedulersTransformer) {
-        this.rxSchedulersTransformer = rxSchedulersTransformer;
+    public Interactor(@NonNull IRxSchedulersTransformer rxSchedulersTransformer) {
+        mRxSchedulersTransformer = rxSchedulersTransformer;
     }
 
     /**
@@ -33,8 +31,8 @@ public class Interactor<T> {
      * @param observable {@link Observable}
      * @return           {@link Observable}, выполняющийся из io в main потоках
      */
-    protected Observable<T> applySchedulers(@NonNull Observable<T> observable) {
-        return observable.compose(rxSchedulersTransformer.getIOToMainTransformerObservable());
+    protected Observable applySchedulers(@NonNull Observable observable) {
+        return observable.compose(mRxSchedulersTransformer.getIOToMainTransformerObservable());
     }
 
     /**
@@ -43,8 +41,8 @@ public class Interactor<T> {
      * @param flowable {@link Flowable}
      * @return         {@link Flowable}, выполняющийся из io в main потоках
      */
-    protected Flowable<T> applySchedulers(@NonNull Flowable<T> flowable) {
-        return flowable.compose(rxSchedulersTransformer.getIOToMainTransformerFlowable());
+    protected Flowable applySchedulers(@NonNull Flowable flowable) {
+        return flowable.compose(mRxSchedulersTransformer.getIOToMainTransformerFlowable());
     }
 
     /**
@@ -53,8 +51,8 @@ public class Interactor<T> {
      * @param single {@link Single}
      * @return       {@link Single}, выполняющийся из io в main потоках
      */
-    protected Single<T> applySchedulers(@NonNull Single<T> single) {
-        return single.compose(rxSchedulersTransformer.getIOToMainTransformerSingle());
+    protected Single applySchedulers(@NonNull Single single) {
+        return single.compose(mRxSchedulersTransformer.getIOToMainTransformerSingle());
     }
 
     /**
@@ -63,8 +61,8 @@ public class Interactor<T> {
      * @param maybe {@link Maybe}
      * @return      {@link Maybe}, выполняющийся из io в main потоках
      */
-    protected Maybe<T> applySchedulers(@NonNull Maybe<T> maybe) {
-        return maybe.compose(rxSchedulersTransformer.getIOToMainTransformerMaybe());
+    protected Maybe applySchedulers(@NonNull Maybe maybe) {
+        return maybe.compose(mRxSchedulersTransformer.getIOToMainTransformerMaybe());
     }
 
     /**
@@ -74,6 +72,6 @@ public class Interactor<T> {
      * @return            {@link Completable}, выполняющийся из io в main потоках
      */
     protected Completable applySchedulers(@NonNull Completable completable) {
-        return completable.compose(rxSchedulersTransformer.getIOToMainTransformerCompletable());
+        return completable.compose(mRxSchedulersTransformer.getIOToMainTransformerCompletable());
     }
 }

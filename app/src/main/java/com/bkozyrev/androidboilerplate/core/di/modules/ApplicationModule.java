@@ -16,10 +16,10 @@ import dagger.Provides;
  */
 
 @Module
-public class ApplicationModule {
+public interface ApplicationModule {
 
     @Provides
-    public Context provideApplicationContext(ProjectApplication application) {
+    static Context provideApplicationContext(ProjectApplication application) {
         return application.getApplicationContext();
     }
 }

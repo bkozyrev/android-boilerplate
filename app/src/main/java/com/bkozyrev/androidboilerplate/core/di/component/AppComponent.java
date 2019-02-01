@@ -1,10 +1,10 @@
 package com.bkozyrev.androidboilerplate.core.di.component;
 
-import com.bkozyrev.androidboilerplate.main.ProjectApplication;
 import com.bkozyrev.androidboilerplate.core.di.modules.ApplicationModule;
 import com.bkozyrev.androidboilerplate.core.di.modules.InjectorsModule;
 import com.bkozyrev.androidboilerplate.core.di.modules.NetworkModule;
 import com.bkozyrev.androidboilerplate.core.di.modules.RxModule;
+import com.bkozyrev.androidboilerplate.main.ProjectApplication;
 
 import javax.inject.Singleton;
 

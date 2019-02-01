@@ -16,17 +16,17 @@ import dagger.Provides;
  * @author Козырев Борис
  */
 @Module
-public class RxModule {
+public interface RxModule {
 
     @Singleton
     @Provides
-    public IRxSchedulers provideRxSchedulers() {
+    static IRxSchedulers provideRxSchedulers() {
         return new RxSchedulers();
     }
 
     @Singleton
     @Provides
-    public IRxSchedulersTransformer provideRxSchedulersTransformer(IRxSchedulers rxSchedulers) {
+    static IRxSchedulersTransformer provideRxSchedulersTransformer(IRxSchedulers rxSchedulers) {
         return new RxSchedulersTransformer(rxSchedulers);
     }
 }

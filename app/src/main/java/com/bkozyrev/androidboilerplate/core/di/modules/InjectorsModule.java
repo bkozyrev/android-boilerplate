@@ -1,8 +1,8 @@
 package com.bkozyrev.androidboilerplate.core.di.modules;
 
-import com.bkozyrev.androidboilerplate.main.presentation.view.MainActivity;
 import com.bkozyrev.androidboilerplate.main.di.modules.MainActivityModule;
 import com.bkozyrev.androidboilerplate.main.di.scopes.MainActivityScope;
+import com.bkozyrev.androidboilerplate.main.presentation.view.MainActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

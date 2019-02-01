@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
@@ -18,14 +20,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @author Козырев Борис
  */
 @Module
-public class NetworkModule {
+public interface NetworkModule {
 
     /**
      * Предоставления {@code Interface} для организации взаимодействия с сетью
      * @return {@link Api}
      */
     @Provides
-    public Api provideApi() {
+    @Singleton
+    static Api provideApi() {
         Gson gson = new GsonBuilder()
                 .create();
 
